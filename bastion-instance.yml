@@ -12,7 +12,7 @@
 
     - name: Create vprofile ec2 key
       ec2_key:
-        name: vprofile-neon-key
+        name: vprofile-neonk-key
         region: "{{region}}"
       register: key_out
 
