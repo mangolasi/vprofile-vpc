@@ -36,7 +36,7 @@
             cidr_ip: 0.0.0.0/0
       register: vproELBSG_out
 
-     - name: Create Security group for Vprofile stack
+    - name: Create Security group for Vprofile stack
        ec2_group:
          name: vproStack-sg
          description: Allow port 22 from everywhere and all port within sg
@@ -55,7 +55,7 @@
              group_id: "{{BastionSGid}}"
          register: vproStackSG_out
 
-     - name: Update Security group with its own sg id
+    - name: Update Security group with its own sg id
        ec2_group:
          name: vproStack-sg
          description: Allow port 22 from everywhere and all port within sg
