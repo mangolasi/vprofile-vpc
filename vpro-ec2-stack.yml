@@ -23,9 +23,9 @@
         mode: 0600
       when: vprokey_out.changed
 
-    - name: Create Save private key into file loginkey_vpro.pem
-      copy:
-        content: "{{vprokey_out.key.private_key}}"
+    - name: Create security group for Load balancer
+      ec2_group:
+        name: vproELB-sg
         description: Allow port 80 from everywhere and all port within SG
         region: "{{region}}"
         vpc_id: "{{vpcid}}"
