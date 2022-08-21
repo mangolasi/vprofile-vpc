@@ -191,7 +191,7 @@
             load_balancer_port: 80
             instance_port: 80
 
-    - name: Insert/Update Hosts IP & Name in the file provision-stack/group_vars/hostip
+    - name: Insert/Update Hosts IP & Name in the file provision_stack/group_vars/hostip
       blockinfile:
         path: provision_stack/group_vars/hostsip
         block:
@@ -204,10 +204,10 @@
     - name: copy login key to provision_stack directory
       copy:
         src: loginkey_vpro.pem
-        dest: provision-stack/loginkey_vpro.pem
+        dest: provision_stack/loginkey_vpro.pem
         mode: '0400'
 
-    - name: Insert/Update Inventory file provision-stack/inventory-vpro
+    - name: Insert/Update Inventory file provision_stack/inventory-vpro
       blockinfile:
         path: provision_stack/inventory-vpro
         block: |
