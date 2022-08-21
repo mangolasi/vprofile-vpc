@@ -12,7 +12,7 @@
 
     - name: Create vprofile ec2 key
       ec2_key:
-        name: vprokey-nid012
+        name: vprokey-nid0123
         region: "{{region}}"
       register: vprokey_out
 
@@ -68,7 +68,7 @@
 
     - name: Creating Nginx web01
       ec2:
-        key_name: vprokey-nid012
+        key_name: vprokey-nid0123
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{nginx_ami}}"
@@ -89,7 +89,7 @@
 
     - name: Creating tomcat app01
       ec2:
-        key_name: vprokey-nid012
+        key_name: vprokey-nid0123
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{tomcat_ami}}"
@@ -109,7 +109,7 @@
       register: app01_out
     - name: Creating memcache mc01
       ec2:
-        key_name: vprokey-nid012
+        key_name: vprokey-nid0123
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{memcache_ami}}"
@@ -130,7 +130,7 @@
 
     - name: Creating RabbitMQ rmq01
       ec2:
-        key_name: vprokey-nid012
+        key_name: vprokey-nid0123
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{rmq_ami}}"
@@ -151,7 +151,7 @@
 
     - name: Creating Mysql db01
       ec2:
-        key_name: vprokey-nid012
+        key_name: vprokey-nid0123
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{mysql_ami}}"
@@ -214,7 +214,7 @@
           web01 ansible_host={{web01_out.tagged_instances[0].private_ip}}
           app01 ansible_host={{app01_out.tagged_instances[0].private_ip}}
           rmq01 ansible_host={{rmq01_out.tagged_instances[0].private_ip}}
-          mc01 ansible_host={{mco1_out.tagged_instances[0].private_ip}}
+          mc01 ansible_host={{mc01_out.tagged_instances[0].private_ip}}
           db01 ansible_host={{db01_out.tagged_instances[0].private_ip}}
           cntl ansible_host=127.0.0.1 ansible_connection=local
 
