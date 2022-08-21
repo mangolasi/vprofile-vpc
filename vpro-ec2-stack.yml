@@ -25,7 +25,7 @@
 
     - name: Create Securiry Group for Load Balancer
       ec2_group:
-        name: vproELB-sg
+        name: vproELB-sg1
         description: Allow port 80 from everywhere and all port within sg
         region: "{{region}}"
         vpc_id: "{{vpcid}}"
@@ -38,7 +38,7 @@
 
     - name: Create Securiry Group for Vprofile Stack
       ec2_group:
-        name: vproStack-sg
+        name: vproStack-sg1
         description: Allow port 22 from everywhere and all port within sg
         region: "{{region}}"
         vpc_id: "{{vpcid}}"
@@ -57,7 +57,7 @@
 
     - name: Update Securiry Group with its own sg id
       ec2_group:
-        name: vproStack-sg
+        name: vproStack-sg1
         description: Allow port 22 from everywhere and all port within sg
         region: "{{region}}"
         vpc_id: "{{vpcid}}"
