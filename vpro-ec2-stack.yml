@@ -16,10 +16,10 @@
         region: "{{region}}"
       register: vprokey_out
 
-    - name: Save private key into file loginkey1_vpro.pem
+    - name: Save private key into file loginkey12_vpro.pem
       copy:
         content: "{{vprokey_out.key.private_key}}"
-        dest: "./loginkey1_vpro.pem"
+        dest: "./loginkey12_vpro.pem"
         mode: 0600
       when: vprokey_out.changed
 
