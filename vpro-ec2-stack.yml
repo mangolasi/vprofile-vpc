@@ -204,7 +204,7 @@
     - name: copy login key to provision_stack directory
       copy:
         src: loginkey_vpro.pem
-        dest: provision-stack/loginkey1_vpro.pem
+        dest: provision-stack/loginkey_vpro.pem
         mode: '0400'
 
     - name: Insert/Update Inventory file provision-stack/inventory-vpro
@@ -245,7 +245,7 @@
 
           [stack_inst:vars]
           ansible_user=ubuntu
-          ansible_ssh_private_key_file=loginkey1_vpro.pem
+          ansible_ssh_private_key_file=loginkey_vpro.pem
           #ansible_python_interpretor=/usr/bin/python3
 
 
