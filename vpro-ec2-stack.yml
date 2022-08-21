@@ -191,15 +191,15 @@
             load_balancer_port: 80
             instance_port: 80
 
-    - name: Insert/Update Hosts IP & Nme in the file provision-stack/group_vars/hostip
+    - name: Insert/Update Hosts IP & Name in the file provision-stack/group_vars/hostip
       blockinfile:
         path: provision-stack/group_vars/hostsip
         block:
-          web01_ip: "{{web01_out.tagged_instance[0].private_ip}}"
-          app01_ip: "{{app01_out.tagged_instance[0].private_ip}}"
-          rmq01_ip: "{{rmq01_out.tagged_instance[0].private_ip}}"
-          mco01_id: "{{mc01_out.tagged_instance[0].private_ip}}"
-          db01_id: "{{db01_out.tagged_instance[0].private_ip}}"
+          web01_ip: {{web01_out.tagged_instance[0].private_ip}}
+          app01_ip: {{app01_out.tagged_instance[0].private_ip}}
+          rmq01_ip: {{rmq01_out.tagged_instance[0].private_ip}}
+          mco01_id: {{mc01_out.tagged_instance[0].private_ip}}
+          db01_id: {{db01_out.tagged_instance[0].private_ip}}
 
     - name: copy login key to provision_stack directory
       copy:
