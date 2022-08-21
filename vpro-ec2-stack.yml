@@ -12,7 +12,7 @@
 
     - name: Create vprofile ec2 key
       ec2_key:
-        name: vprokey-nid
+        name: vprokey-nid01
         region: "{{region}}"
       register: vprokey_out
 
@@ -68,7 +68,7 @@
 
     - name: Creating Nginx web01
       ec2:
-        key_name: vprokey-nid
+        key_name: vprokey-nid01
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{nginx_ami}}"
@@ -89,7 +89,7 @@
 
     - name: Creating tomcat app01
       ec2:
-        key_name: vprokey-nid
+        key_name: vprokey-nid01
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{tomcat_ami}}"
@@ -109,7 +109,7 @@
       register: app01_out
     - name: Creating memcache mc01
       ec2:
-        key_name: vprokey-nid
+        key_name: vprokey-nid01
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{memcache_ami}}"
@@ -130,7 +130,7 @@
 
     - name: Creating RabbitMQ rmq01
       ec2:
-        key_name: vprokey-nid
+        key_name: vprokey-nid01
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{rmq_ami}}"
@@ -151,7 +151,7 @@
 
     - name: Creating Mysql db01
       ec2:
-        key_name: vprokey-nid
+        key_name: vprokey-nid01
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{mysql_ami}}"
@@ -209,7 +209,7 @@
 
     - name: Insert/Update Inventory file provision-stack/inventory-vpro
       blockinfile:
-        path: provision-stack/inventory-vpro
+        path: provision_stack/inventory-vpro
         block: |
           web01 ansible_host={{web01_out.tagged_instances[0].private_ip}}
           app01 ansible_host={{app01_out.tagged_instances[0].private_ip}}
