@@ -84,7 +84,7 @@
           Project: Vprofile
           Owner: DevOps Team
         group_id: "{{vproStackSG_out.group_id}}"
-        vpc_subnet_id: "{{privsub1id}}"
+        vpc_subnet_id: "{{PrivSub1id}}"
       register: web01_out
 
     - name: Creating tomcat app01
@@ -105,7 +105,7 @@
           Project: Vprofile
           Owner: DevOps Team
         group_id: "{{vproStackSG_out.group_id}}"
-        vpc_subnet_id: "{{privsub1id}}"
+        vpc_subnet_id: "{{PrivSub1id}}"
       register: app01_out
 
     - name: Creating memcache mc01
@@ -126,7 +126,7 @@
           Project: Vprofile
           Owner: DevOps Team
         group_id: "{{vproStackSG_out.group_id}}"
-        vpc_subnet_id: "{{privsub1id}}"
+        vpc_subnet_id: "{{PrivSub1id}}"
       register: mc01_out
 
     - name: Creating RabbitMQ rmq01
@@ -147,7 +147,7 @@
           Project: Vprofile
           Owner: DevOps Team
         group_id: "{{vproStackSG_out.group_id}}"
-        vpc_subnet_id: "{{privsub1id}}"
+        vpc_subnet_id: "{{PrivSub1id}}"
       register: rmq01_out
 
     - name: Creating Mysql db01
@@ -168,7 +168,7 @@
           Project: Vprofile
           Owner: DevOps Team
         group_id: "{{vproStackSG_out.group_id}}"
-        vpc_subnet_id: "{{privsub1id}}"
+        vpc_subnet_id: "{{PrivSub1id}}"
       register: db01_out
 
     - debug:
