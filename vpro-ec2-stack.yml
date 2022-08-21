@@ -12,7 +12,7 @@
 
     - name: Create vprofile ec2 key
       ec2_key:
-        name: vprokey-nid01
+        name: vprokey-nid012
         region: "{{region}}"
       register: vprokey_out
 
@@ -68,7 +68,7 @@
 
     - name: Creating Nginx web01
       ec2:
-        key_name: vprokey-nid01
+        key_name: vprokey-nid012
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{nginx_ami}}"
@@ -89,7 +89,7 @@
 
     - name: Creating tomcat app01
       ec2:
-        key_name: vprokey-nid01
+        key_name: vprokey-nid012
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{tomcat_ami}}"
@@ -109,7 +109,7 @@
       register: app01_out
     - name: Creating memcache mc01
       ec2:
-        key_name: vprokey-nid01
+        key_name: vprokey-nid012
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{memcache_ami}}"
@@ -130,7 +130,7 @@
 
     - name: Creating RabbitMQ rmq01
       ec2:
-        key_name: vprokey-nid01
+        key_name: vprokey-nid012
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{rmq_ami}}"
@@ -151,7 +151,7 @@
 
     - name: Creating Mysql db01
       ec2:
-        key_name: vprokey-nid01
+        key_name: vprokey-nid012
         region: "{{region}}"
         instance_type: t2.micro
         image: "{{mysql_ami}}"
