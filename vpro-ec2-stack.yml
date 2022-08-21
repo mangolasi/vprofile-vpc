@@ -66,7 +66,7 @@
           - proto: all
             group_id: "{{vproStackSG_out.group_id}}"
 
-    - name: Creating Nginx web01
+    - name: Creating Nginx web01d
       ec2:
         key_name: vprokey
         region: "{{region}}"
@@ -75,19 +75,19 @@
         wait: yes
         wait_timeout: 300
         instance_tags:
-          Name: "web01"
+          Name: "web01d"
           Project: Vprofile
           Owner: DevOps Team
         exact_count: 1
         count_tag:
-          Name: "web01"
+          Name: "web01d"
           Project: Vprofile
           Owner: DevOps Team
         group_id: "{{vproStackSG_out.group_id}}"
         vpc_subnet_id: "{{PrivSub1id}}"
-      register: web01_out
+      register: web01d_out
 
-    - name: Creating tomcat app01
+    - name: Creating tomcat app01d
       ec2:
         key_name: vprokey
         region: "{{region}}"
@@ -96,19 +96,19 @@
         wait: yes
         wait_timeout: 300
         instance_tags:
-          Name: "app01"
+          Name: "app01d"
           Project: Vprofile
           Owner: DevOps Team
         exact_count: 1
         count_tag:
-          Name: "app01"
+          Name: "app01d"
           Project: Vprofile
           Owner: DevOps Team
         group_id: "{{vproStackSG_out.group_id}}"
         vpc_subnet_id: "{{PrivSub1id}}"
-      register: app01_out
+      register: app01d_out
 
-    - name: Creating memcache mc01
+    - name: Creating memcache mc01d
       ec2:
         key_name: vprokey
         region: "{{region}}"
@@ -117,19 +117,19 @@
         wait: yes
         wait_timeout: 300
         instance_tags:
-          Name: "mc01"
+          Name: "mc01d"
           Project: Vprofile
           Owner: DevOps Team
         exact_count: 1
         count_tag:
-          Name: "mc01"
+          Name: "mc01d"
           Project: Vprofile
           Owner: DevOps Team
         group_id: "{{vproStackSG_out.group_id}}"
         vpc_subnet_id: "{{PrivSub1id}}"
-      register: mc01_out
+      register: mc01d_out
 
-    - name: Creating RabbitMQ rmq01
+    - name: Creating RabbitMQ rmq01d
       ec2:
         key_name: vprokey
         region: "{{region}}"
@@ -138,19 +138,19 @@
         wait: yes
         wait_timeout: 300
         instance_tags:
-          Name: "rmq01"
+          Name: "rmq01d"
           Project: Vprofile
           Owner: DevOps Team
         exact_count: 1
         count_tag:
-          Name: "rmq01"
+          Name: "rmq01d"
           Project: Vprofile
           Owner: DevOps Team
         group_id: "{{vproStackSG_out.group_id}}"
         vpc_subnet_id: "{{PrivSub1id}}"
-      register: rmq01_out
+      register: rmq01d_out
 
-    - name: Creating Mysql db01
+    - name: Creating Mysql db01d
       ec2:
         key_name: vprokey
         region: "{{region}}"
@@ -159,20 +159,20 @@
         wait: yes
         wait_timeout: 300
         instance_tags:
-          Name: "db01"
+          Name: "db01d"
           Project: Vprofile
           Owner: DevOps Team
         exact_count: 1
         count_tag:
-          Name: "db01"
+          Name: "db01d"
           Project: Vprofile
           Owner: DevOps Team
         group_id: "{{vproStackSG_out.group_id}}"
         vpc_subnet_id: "{{PrivSub1id}}"
-      register: db01_out
+      register: db01d_out
 
     - debug:
-        var: db01_out.tagged_instances[0].id
+        var: db01d_out.tagged_instances[0].id
 
     - local_action:
         module: ec2_elb_lb
@@ -196,11 +196,11 @@
       blockinfile:
         path: provision-stack/group_vars/hostsip
         block: |
-          web01_ip: {{ web01_out.tagged_instances[0].private_ip }}
-          app01_ip: {{ app01_out.tagged_instances[0].private_ip }}
-          rmq01_ip: {{ rmq01_out.tagged_instances[0].private_ip }}
-          mc01_ip: {{ mc01_out.tagged_instances[0].private_ip }}
-          db01_ip: {{ db01_out.tagged_instances[0].private_ip }}
+          web01_ip: {{ web01d_out.tagged_instances[0].private_ip }}
+          app01_ip: {{ app01d_out.tagged_instances[0].private_ip }}
+          rmq01_ip: {{ rmq01d_out.tagged_instances[0].private_ip }}
+          mc01_ip: {{ mc01d_out.tagged_instances[0].private_ip }}
+          db01_ip: {{ db01d_out.tagged_instances[0].private_ip }}
     - name: Copy login key to provision_stack directory
       copy:
         src: loginkey_vpro.pem
@@ -211,23 +211,23 @@
       blockinfile:
         path: provision-stack/inventory-vpro
         block: |
-          web01 ansible_host={{ web01_out.tagged_instances[0].private_ip }}
-          app01 ansible_host={{ app01_out.tagged_instances[0].private_ip }}
-          rmq01 ansible_host={{ rmq01_out.tagged_instances[0].private_ip }}
-          mc01 ansible_host={{ mc01_out.tagged_instances[0].private_ip }}
-          db01 ansible_host={{ db01_out.tagged_instances[0].private_ip }}
+          web01d ansible_host={{ web01d_out.tagged_instances[0].private_ip }}
+          app01d ansible_host={{ app01d_out.tagged_instances[0].private_ip }}
+          rmq01d ansible_host={{ rmq01d_out.tagged_instances[0].private_ip }}
+          mc01d ansible_host={{ mc01d_out.tagged_instances[0].private_ip }}
+          db01d ansible_host={{ db01d_out.tagged_instances[0].private_ip }}
           cntl ansible_host=127.0.0.1 ansible_connection=local
 
           [websrvgrp]
-          web01
+          web01d
           [appsrvgrp]
-          app01
+          app01d
           [rmqsrvgrp]
-          rmq01
+          rmq01d
           [mcsrvgrp]
-          mc01
+          mc01d
           [dbsrvgrp]
-          db01
+          db01d
           [control]
           cntl
 
